@@ -2,7 +2,26 @@
 
 This guide outlines how to implement the suggested blog enhancements for your Hashnode blog.
 
-## 1. Enhanced Cover Images
+## 1. Full-Width Hero Banner (NEW!)
+
+To implement stunning full-width hero banners that stretch across the entire width:
+
+1. Include the Hero Banner CSS from `components/hero-banner.css` in your Hashnode custom CSS
+2. Add the Hero Banner JavaScript from `hashnode-hero-banner.js` to your Hashnode Custom JavaScript section
+3. Use the hero banner in your blog posts with:
+
+```html
+<div class="hashnode-hero-banner" 
+     data-image-url="https://example.com/your-image.jpg" 
+     data-alt="Your hero image alt text" 
+     data-title="Your Post Title" 
+     data-subtitle="May 26, 2023 • 5 min read">
+</div>
+```
+
+For detailed instructions, see [HERO_BANNER_GUIDE.md](/HERO_BANNER_GUIDE.md)
+
+## 2. Enhanced Cover Images
 
 To implement responsive, attractive cover images with gradient overlays:
 

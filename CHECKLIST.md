@@ -8,6 +8,7 @@
 - [x] Created responsive cover image component with gradient overlay
 - [x] Added fallback image support for failed image loads
 - [x] Implemented title overlay on cover images for better visual appeal
+- [x] Created full-width hero banner that stretches across the entire banner
 
 ## ✅ Markdown Enhancements
 - [x] Created reading time calculation script
@@ -39,7 +40,8 @@
 
 ## Next Steps
 1. Apply custom CSS to your Hashnode blog
-2. Set up Giscus for comments
-3. Connect a newsletter service
-4. Add reading time to all blog posts
-5. Optimize your blog's performance with the suggested techniques
+2. Choose between standard cover images or full-width hero banners
+3. Set up Giscus for comments
+4. Connect a newsletter service
+5. Add reading time to all blog posts
+6. Optimize your blog's performance with the suggested techniques

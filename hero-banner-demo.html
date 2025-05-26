@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Banner Demo</title>
+  <style>
+    /* Reset and basic styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    h2 {
+      margin: 2rem 0 1rem;
+      font-size: 1.8rem;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Hero Banner Component Styles */
+    :root {
+      --hero-height: 500px;
+      --hero-mobile-height: 300px;
+      --hero-content-max-width: 1200px;
+    }
+    
+    .hero-banner-container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .hero-banner-wrapper {
+      position: relative;
+      width: 100%;
+      height: var(--hero-height);
+      overflow: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-banner-wrapper {
+        height: var(--hero-mobile-height);
+      }
+    }
+    
+    .hero-banner-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    
+    .hero-banner-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.75));
+      pointer-events: none;
+    }
+    
+    .hero-banner-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem;
+      color: #ffffff;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .hero-banner-content > * {
+      max-width: var(--hero-content-max-width);
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .hero-banner-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-banner-subtitle {
+      font-size: 1.25rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin: 0;
+      max-width: 800px;
+      text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Compare with standard cover image */
+    .cover-image-container {
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    
+    .cover-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cover-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .cover-gradient-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+      pointer-events: none;
+    }
+    
+    .cover-title-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem;
+      color: #ffffff;
+      z-index: 2;
+    }
+    
+    .cover-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .comparison {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .comparison-section {
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .blog-content {
+      margin-top: 2rem;
+    }
+    
+    /* Toggle button for demo */
+    .toggle-container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    
+    .toggle-button {
+      padding: 0.75rem 1.5rem;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    
+    .toggle-button:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Banner Demo -->
+  <div class="hero-banner-container">
+    <div class="hero-banner-wrapper">
+      <img
+        src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        alt="Hero banner"
+        class="hero-banner-image"
+      />
+      <div class="hero-banner-gradient"></div>
+      <div class="hero-banner-content">
+        <h1 class="hero-banner-title">Full-Width Hero Banner Example</h1>
+        <p class="hero-banner-subtitle">See how the image stretches across the entire width of the page for maximum impact</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>About the Hero Banner</h2>
+    <p>
+      The hero banner above demonstrates a full-width cover image implementation. Notice how it:
+    </p>
+    <ul>
+      <li>Stretches across the entire width of the viewport</li>
+      <li>Has no rounded corners or container constraints</li>
+      <li>Includes a subtle gradient overlay that improves text readability</li>
+      <li>Positions text in a centered, visually appealing manner</li>
+    </ul>
+    
+    <div class="toggle-container">
+      <button class="toggle-button" id="toggleButton">Toggle Between Hero and Standard Cover</button>
+    </div>
+    
+    <div class="comparison">
+      <div class="comparison-section">
+        <h3>Standard Cover Image (Before)</h3>
+        <div class="cover-image-container">
+          <div class="cover-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Cover image"
+              class="cover-image"
+            />
+            <div class="cover-gradient-overlay"></div>
+            <div class="cover-title-container">
+              <h1 class="cover-title">Standard Cover Image Example</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="blog-content">
+      <h2>Implementation Details</h2>
+      <p>
+        The hero banner implementation uses a combination of HTML structure and CSS styling techniques to create a full-width, visually appealing header for your blog posts.
+      </p>
+      <p>
+        Unlike the standard cover image approach, the hero banner removes any border radius and container padding, allowing the image to extend to the edges of the viewport. This creates a more immersive, magazine-style layout that draws readers in.
+      </p>
+      <h2>Key Differences</h2>
+      <ul>
+        <li>No border radius (vs. rounded corners in standard cover)</li>
+        <li>No container padding or margins at the edges</li>
+        <li>Enhanced gradient overlay (60% height vs 50%)</li>
+        <li>Centered content container with max-width for better readability</li>
+        <li>Support for both title and subtitle</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    // Simple toggle for demo purposes
+    document.getElementById('toggleButton').addEventListener('click', function() {
+      const heroContainer = document.querySelector('.hero-banner-container');
+      const comparisonSection = document.querySelector('.comparison');
+      
+      if (heroContainer.style.display === 'none') {
+        heroContainer.style.display = 'block';
+        comparisonSection.style.display = 'flex';
+      } else {
+        heroContainer.style.display = 'none';
+        comparisonSection.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

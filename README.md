@@ -10,18 +10,24 @@ This document provides a guide to implementing the suggested blog enhancements f
    - `components/NewsletterSignup.jsx` - Newsletter signup form component
    - `components/CoverImage.jsx` - Enhanced responsive cover image component
    - `components/CoverImage.js` - Vanilla JS implementation for Hashnode
+   - `components/HeroBanner.jsx` - Full-width hero banner component
    - `components/BlogPostWithCover.jsx` - Example usage of cover image in blog post
+   - `components/BlogWithHero.jsx` - Example usage of hero banner in blog post
    - `components/custom-styles.css` - Enhanced styling for your blog
+   - `components/hero-banner.css` - Styling for full-width hero banners
 
 2. **Utilities**:
    - `calculate-reading-time.js` - Script to calculate reading time for blog posts
 
 3. **Examples**:
    - `enhanced-blog-post-example.md` - An example of a blog post with all enhancements applied
+   - `example-hero-banner-post.md` - An example blog post using the full-width hero banner
+   - `hero-banner-demo.html` - Visual demo of the hero banner implementation
 
 4. **Documentation**:
    - `IMPLEMENTATION_GUIDE.md` - Detailed implementation steps for Hashnode
    - `COVER_IMAGE_GUIDE.md` - Specific guide for implementing enhanced cover images
+   - `HERO_BANNER_GUIDE.md` - Specific guide for implementing full-width hero banners
 
 ## How to Implement the Enhancements
 
