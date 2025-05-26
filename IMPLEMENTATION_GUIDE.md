@@ -2,7 +2,65 @@
 
 This guide outlines how to implement the suggested blog enhancements for your Hashnode blog.
 
-## 1. Setting up Custom CSS
+## 1. Enhanced Cover Images
+
+To implement responsive, attractive cover images with gradient overlays:
+
+1. Include the CoverImage CSS styles from `components/custom-styles.css` in your Hashnode custom CSS
+2. Add the following JavaScript to your Hashnode Custom JavaScript section:
+
+```javascript
+// Cover Image Enhancement
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all blog post cover images
+  const coverImages = document.querySelectorAll('.blog-post-card-cover, .blog-post-cover-image');
+  
+  coverImages.forEach(img => {
+    // Get the original image source
+    const src = img.getAttribute('src');
+    const alt = img.getAttribute('alt') || 'Cover image';
+    
+    // Create wrapper and container
+    const wrapper = document.createElement('div');
+    wrapper.className = 'cover-image-wrapper';
+    
+    // Create gradient overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'cover-gradient-overlay';
+    
+    // Replace the original image with our enhanced structure
+    const parent = img.parentNode;
+    const container = document.createElement('div');
+    container.className = 'cover-image-container';
+    
+    // Move the image into our new structure
+    wrapper.appendChild(img);
+    wrapper.appendChild(overlay);
+    container.appendChild(wrapper);
+    
+    // Replace the original image with our container
+    parent.appendChild(container);
+  });
+});
+```
+
+3. For blog post pages, you can also add a title overlay to the cover image by adding this code:
+
+```javascript
+// Add title overlay to cover images
+const postTitle = document.querySelector('.blog-post-title');
+if (postTitle && document.querySelector('.cover-image-wrapper')) {
+  const titleOverlay = document.createElement('div');
+  titleOverlay.className = 'cover-title-container';
+  titleOverlay.innerHTML = `<h1 class="cover-title">${postTitle.textContent}</h1>`;
+  document.querySelector('.cover-image-wrapper').appendChild(titleOverlay);
+  
+  // Optionally hide the original title
+  // postTitle.style.display = 'none';
+}
+```
+
+## 2. Setting up Custom CSS
 
 Hashnode allows you to add custom CSS to your blog. Follow these steps:
 

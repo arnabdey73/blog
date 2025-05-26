@@ -10,6 +10,13 @@ ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1748116544147/deed1
 tags: python, azure, kubernetes, devops
 ---
 
+<!-- Enhanced Cover Image -->
+<div class="hashnode-cover-image-container" 
+     data-image-url="https://cdn.hashnode.com/res/hashnode/image/upload/v1748116509711/8e647311-9519-4950-b4ab-1fb756b7bfd9.png" 
+     data-alt="DevOps Automation Cover Image" 
+     data-title="A Complete DevOps Automation Project with Python, Azure, and Kubernetes">
+</div>
+
 **Reading time: 3 min** • Published April 18, 2025
 
 When preparing for interviews or building a serious DevOps portfolio, toy projects won't cut it. You need something that mirrors real-world complexity — and shows you know how to automate, integrate, and deploy across cloud and container platforms.

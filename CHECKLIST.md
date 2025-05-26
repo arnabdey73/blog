@@ -5,6 +5,9 @@
 - [x] Implemented dark mode toggle with localStorage persistence
 - [x] Enhanced blog post preview styling
 - [x] Added better spacing and readability improvements
+- [x] Created responsive cover image component with gradient overlay
+- [x] Added fallback image support for failed image loads
+- [x] Implemented title overlay on cover images for better visual appeal
 
 ## ✅ Markdown Enhancements
 - [x] Created reading time calculation script

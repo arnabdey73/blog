@@ -8,6 +8,9 @@ This document provides a guide to implementing the suggested blog enhancements f
    - `components/ThemeToggle.jsx` - A dark/light mode toggle component
    - `components/Comments.jsx` - Giscus comments integration component
    - `components/NewsletterSignup.jsx` - Newsletter signup form component
+   - `components/CoverImage.jsx` - Enhanced responsive cover image component
+   - `components/CoverImage.js` - Vanilla JS implementation for Hashnode
+   - `components/BlogPostWithCover.jsx` - Example usage of cover image in blog post
    - `components/custom-styles.css` - Enhanced styling for your blog
 
 2. **Utilities**:
@@ -18,6 +21,7 @@ This document provides a guide to implementing the suggested blog enhancements f
 
 4. **Documentation**:
    - `IMPLEMENTATION_GUIDE.md` - Detailed implementation steps for Hashnode
+   - `COVER_IMAGE_GUIDE.md` - Specific guide for implementing enhanced cover images
 
 ## How to Implement the Enhancements
 

@@ -1,0 +1,17 @@
+<!-- 
+  Default Cover Image SVG - This is a simple SVG that can be used as a fallback
+  when blog post cover images fail to load.
+-->
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="1" />
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad)" />
+  <circle cx="1000" cy="150" r="80" fill="#ffffff" fill-opacity="0.2" />
+  <circle cx="200" cy="450" r="120" fill="#ffffff" fill-opacity="0.1" />
+  <text x="600" y="300" font-family="Arial, sans-serif" font-size="60" text-anchor="middle" fill="#ffffff">Blog Post</text>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" fill="#ffffff">By Arnab Dey</text>
+</svg>
