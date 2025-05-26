@@ -1,0 +1,142 @@
+/* Custom styles for Hashnode blog */
+
+/* Improve typography and readability */
+:root {
+  --base-font-size: 1.125rem;
+  --line-height-relaxed: 1.75;
+  --content-spacing: 1.5rem;
+}
+
+.blog-content p {
+  font-size: var(--base-font-size);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--content-spacing);
+}
+
+.blog-content h1, 
+.blog-content h2, 
+.blog-content h3, 
+.blog-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Dark mode variables */
+:root {
+  --light-bg: #ffffff;
+  --light-text: #333333;
+  --dark-bg: #121212;
+  --dark-text: #f0f0f0;
+}
+
+/* Dark mode classes */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Post previews */
+.post-preview {
+  border: 1px solid #eaeaea;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+html.dark .post-preview {
+  border-color: #333;
+}
+
+.post-preview:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+html.dark .post-preview:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Reading time estimation */
+.reading-time {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+html.dark .reading-time {
+  color: #aaa;
+}
+
+/* Code syntax highlighting */
+pre {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+html.dark pre {
+  background-color: #1e1e1e !important;
+}
+
+/* Comments section */
+.comments-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eaeaea;
+}
+
+html.dark .comments-section {
+  border-color: #333;
+}
+
+/* Newsletter signup */
+.newsletter-signup {
+  background-color: #f5f7fa;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+html.dark .newsletter-signup {
+  background-color: #2a2a2a;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.newsletter-input {
+  flex-grow: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+}
+
+html.dark .newsletter-input {
+  background-color: #333;
+  border-color: #555;
+  color: #f0f0f0;
+}
+
+.newsletter-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+}
+
+.newsletter-button:hover {
+  background-color: #2563eb;
+}
+
+/* SEO improvements are handled in head section */
