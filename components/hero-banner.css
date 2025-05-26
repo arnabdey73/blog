@@ -5,6 +5,16 @@
   --hero-height: 500px;
   --hero-mobile-height: 300px;
   --hero-content-max-width: 1200px;
+  --hero-transition-duration: 0.3s;
+  
+  /* Gradient variables for light/dark modes */
+  --gradient-light-start: rgba(0, 0, 0, 0);
+  --gradient-light-middle: rgba(0, 0, 0, 0.3);
+  --gradient-light-end: rgba(0, 0, 0, 0.7);
+  
+  --gradient-dark-start: rgba(0, 0, 0, 0);
+  --gradient-dark-middle: rgba(0, 0, 0, 0.5);
+  --gradient-dark-end: rgba(0, 0, 0, 0.8);
 }
 
 /* Full-width banner container */
@@ -14,6 +24,7 @@
   padding: 0;
   margin-bottom: 2rem;
   position: relative;
+  transition: all var(--hero-transition-duration) ease;
 }
 
 .hero-banner-wrapper {
@@ -23,6 +34,7 @@
   overflow: hidden;
   /* No border radius for full-width effect */
   /* No shadow for full-width effect */
+  transition: height var(--hero-transition-duration) ease;
 }
 
 @media (max-width: 768px) {
@@ -37,19 +49,37 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, opacity var(--hero-transition-duration) ease;
   display: block; /* Removes any bottom margin/spacing */
 }
 
-/* Enhanced gradient for better text visibility */
+/* Enhanced gradient for better text visibility with theme variants */
 .hero-banner-gradient {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 60%;
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.75));
   pointer-events: none;
+  transition: background var(--hero-transition-duration) ease;
+}
+
+.hero-banner-gradient-light {
+  background: linear-gradient(
+    to bottom, 
+    var(--gradient-light-start), 
+    var(--gradient-light-middle), 
+    var(--gradient-light-end)
+  );
+}
+
+.hero-banner-gradient-dark {
+  background: linear-gradient(
+    to bottom, 
+    var(--gradient-dark-start), 
+    var(--gradient-dark-middle), 
+    var(--gradient-dark-end)
+  );
 }
 
 /* Content container */
@@ -64,6 +94,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform var(--hero-transition-duration) ease, 
+              opacity var(--hero-transition-duration) ease;
 }
 
 /* Centered content with max width */
@@ -79,6 +111,7 @@
   font-weight: 700;
   margin-bottom: 1rem;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: font-size var(--hero-transition-duration) ease;
 }
 
 /* Subtitle styling */
@@ -89,20 +122,31 @@
   margin: 0;
   max-width: 800px;
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: font-size var(--hero-transition-duration) ease;
 }
 
-/* Optional: Parallax effect on scroll */
+/* Optional: Parallax effect on scroll with smoother transition */
 @media (min-width: 1024px) {
   .hero-banner-wrapper:hover .hero-banner-image {
     transform: scale(1.03);
   }
+  
+  /* Subtle content lift on hover */
+  .hero-banner-wrapper:hover .hero-banner-content {
+    transform: translateY(-5px);
+  }
 }
 
-/* Dark mode adjustments */
-html.dark .hero-banner-gradient {
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.85));
+/* Enhanced accessibility - better text contrast */
+.hero-banner-title,
+.hero-banner-subtitle {
+  /* Enhance text visibility with improved shadow */
+  text-shadow: 
+    0px 2px 4px rgba(0, 0, 0, 0.5),
+    0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
+/* Responsive adjustments */
 @media (max-width: 640px) {
   .hero-banner-title {
     font-size: 2rem;
@@ -115,4 +159,10 @@ html.dark .hero-banner-gradient {
   .hero-banner-content {
     padding: 1.5rem;
   }
+}
+
+/* Focus styles for accessibility */
+.hero-banner-wrapper:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }

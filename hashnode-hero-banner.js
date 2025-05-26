@@ -1,46 +1,77 @@
 /**
  * Hashnode Hero Banner Implementation
  * This script enhances blog posts with full-width hero banners
+ * Enhanced version with theme adaptation and improved accessibility
  */
 
 document.addEventListener('DOMContentLoaded', function() {
   // Find and enhance hero banner containers
   const heroBannerContainers = document.querySelectorAll('.hashnode-hero-banner');
   
-  heroBannerContainers.forEach(container => {
-    // Get data attributes
-    const imageUrl = container.getAttribute('data-image-url');
-    const imageAlt = container.getAttribute('data-alt') || 'Hero banner';
-    const imageTitle = container.getAttribute('data-title');
-    const imageSubtitle = container.getAttribute('data-subtitle');
-    const fallbackUrl = container.getAttribute('data-fallback-url') || '/default-cover.jpg';
+  // Function to check dark mode
+  function isDarkMode() {
+    return document.documentElement.classList.contains('dark');
+  }
+  
+  // Function to create/update hero banners
+  function updateHeroBanners() {
+    const darkModeActive = isDarkMode();
     
-    // Create the hero banner HTML structure
-    const bannerHtml = `
-      <div class="hero-banner-wrapper">
-        <img 
-          src="${imageUrl}" 
-          alt="${imageAlt}" 
-          class="hero-banner-image" 
-          onerror="this.onerror=null;this.src='${fallbackUrl}';"
-        />
-        <div class="hero-banner-gradient"></div>
-        ${(imageTitle || imageSubtitle) ? 
-          `<div class="hero-banner-content">
-            ${imageTitle ? `<h1 class="hero-banner-title">${imageTitle}</h1>` : ''}
-            ${imageSubtitle ? `<p class="hero-banner-subtitle">${imageSubtitle}</p>` : ''}
-          </div>` : ''
-        }
-      </div>
-    `;
-    
-    // Set the HTML content
-    container.innerHTML = bannerHtml;
-    
-    // Add the appropriate class to ensure styling
-    container.classList.add('hero-banner-container');
-  });
+    heroBannerContainers.forEach(container => {
+      // Get data attributes
+      const imageUrl = container.getAttribute('data-image-url');
+      const imageAlt = container.getAttribute('data-alt') || 'Hero banner';
+      const imageTitle = container.getAttribute('data-title');
+      const imageSubtitle = container.getAttribute('data-subtitle');
+      const fallbackUrl = container.getAttribute('data-fallback-url') || '/default-cover.jpg';
+      
+      // Create the hero banner HTML structure with dynamic theme classes
+      const bannerHtml = `
+        <div class="hero-banner-wrapper">
+          <img 
+            src="${imageUrl}" 
+            alt="${imageAlt}" 
+            class="hero-banner-image" 
+            onerror="this.onerror=null;this.src='${fallbackUrl}';"
+          />
+          <div class="hero-banner-gradient ${darkModeActive ? 'hero-banner-gradient-dark' : 'hero-banner-gradient-light'}"></div>
+          ${(imageTitle || imageSubtitle) ? 
+            `<div class="hero-banner-content">
+              ${imageTitle ? `<h1 class="hero-banner-title">${imageTitle}</h1>` : ''}
+              ${imageSubtitle ? `<p class="hero-banner-subtitle">${imageSubtitle}</p>` : ''}
+            </div>` : ''
+          }
+        </div>
+      `;
+      
+      // Set the HTML content
+      container.innerHTML = bannerHtml;
+      
+      // Add the appropriate class to ensure styling
+      container.classList.add('hero-banner-container');
+    });
+  }
 
+  // Apply initial update
+  updateHeroBanners();
+  
+  // Watch for theme changes from ThemeToggle
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class' && 
+          mutation.target === document.documentElement) {
+        // Update all banners when theme changes
+        updateHeroBanners();
+      }
+    });
+  });
+  
+  // Start observing document for theme changes
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+  
   // Also convert standard blog headers to full-width hero banners
   const postHeaders = document.querySelectorAll('.blog-post-header');
   
@@ -75,9 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
     newImg.alt = title || 'Blog post hero';
     newImg.className = 'hero-banner-image';
     
-    // Create gradient overlay
+    // Create gradient overlay with theme-aware class
     const overlay = document.createElement('div');
-    overlay.className = 'hero-banner-gradient';
+    overlay.className = `hero-banner-gradient ${isDarkMode() ? 'hero-banner-gradient-dark' : 'hero-banner-gradient-light'}`;
     
     // Create content container
     const content = document.createElement('div');

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Hero Banner Demo</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+    
+    body.dark {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+    
+    h1, h2, h3, p {
+      margin: 0 0 1rem 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      background-color: rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    
+    button svg {
+      margin-right: 8px;
+    }
+    
+    .dark button {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    button:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .demo-header {
+      margin-bottom: 2rem;
+    }
+    
+    .demo-section {
+      margin-bottom: 4rem;
+    }
+    
+    .demo-content {
+      margin-top: 2rem;
+    }
+    
+    .demo-content p {
+      margin-bottom: 1rem;
+    }
+
+    /* Standard Cover Image Styles - Original */
+    .cover-image-container {
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    
+    .cover-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cover-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .cover-gradient-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+      pointer-events: none;
+    }
+    
+    .cover-title-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem;
+      color: #ffffff;
+      z-index: 2;
+    }
+    
+    .cover-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Hero Banner Component Styles - Enhanced */
+    :root {
+      --hero-height: 500px;
+      --hero-mobile-height: 300px;
+      --hero-content-max-width: 1200px;
+      --hero-transition-duration: 0.3s;
+      
+      --gradient-light-start: rgba(0, 0, 0, 0);
+      --gradient-light-middle: rgba(0, 0, 0, 0.3);
+      --gradient-light-end: rgba(0, 0, 0, 0.7);
+      
+      --gradient-dark-start: rgba(0, 0, 0, 0);
+      --gradient-dark-middle: rgba(0, 0, 0, 0.5);
+      --gradient-dark-end: rgba(0, 0, 0, 0.8);
+    }
+    
+    .hero-banner-container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 2rem;
+      position: relative;
+      transition: all var(--hero-transition-duration) ease;
+    }
+    
+    .hero-banner-wrapper {
+      position: relative;
+      width: 100%;
+      height: var(--hero-height);
+      overflow: hidden;
+      transition: height var(--hero-transition-duration) ease;
+    }
+    
+    .hero-banner-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease, opacity var(--hero-transition-duration) ease;
+      display: block;
+    }
+    
+    .hero-banner-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      pointer-events: none;
+      transition: background var(--hero-transition-duration) ease;
+    }
+    
+    .hero-banner-gradient-light {
+      background: linear-gradient(
+        to bottom, 
+        var(--gradient-light-start), 
+        var(--gradient-light-middle), 
+        var(--gradient-light-end)
+      );
+    }
+    
+    .hero-banner-gradient-dark {
+      background: linear-gradient(
+        to bottom, 
+        var(--gradient-dark-start), 
+        var(--gradient-dark-middle), 
+        var(--gradient-dark-end)
+      );
+    }
+    
+    .hero-banner-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem;
+      color: #ffffff;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform var(--hero-transition-duration) ease, 
+                  opacity var(--hero-transition-duration) ease;
+    }
+    
+    .hero-banner-content > * {
+      max-width: var(--hero-content-max-width);
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .hero-banner-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5),
+                  0px 0px 10px rgba(0, 0, 0, 0.25);
+      transition: font-size var(--hero-transition-duration) ease;
+    }
+    
+    .hero-banner-subtitle {
+      font-size: 1.25rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin: 0;
+      max-width: 800px;
+      text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5),
+                  0px 0px 10px rgba(0, 0, 0, 0.25);
+      transition: font-size var(--hero-transition-duration) ease;
+    }
+    
+    .comparison-label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      z-index: 10;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-banner-wrapper {
+        height: var(--hero-mobile-height);
+      }
+      
+      .hero-banner-title {
+        font-size: 2rem;
+      }
+      
+      .hero-banner-subtitle {
+        font-size: 1rem;
+      }
+      
+      .hero-banner-content {
+        padding: 1.5rem;
+      }
+      
+      .cover-image-wrapper {
+        height: 250px;
+      }
+      
+      .cover-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="demo-header">
+      <h1>Enhanced Hero Banner Demo</h1>
+      <button id="theme-toggle">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+        Toggle Theme
+      </button>
+      <p>This demo showcases the difference between standard cover images and the enhanced full-width hero banner with theme integration.</p>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Standard Cover Image (Original)</h2>
+      <div class="cover-image-container">
+        <div class="comparison-label">Original</div>
+        <div class="cover-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cover image" class="cover-image">
+          <div class="cover-gradient-overlay"></div>
+          <div class="cover-title-container">
+            <h1 class="cover-title">Building with React and GraphQL</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="demo-content">
+        <p>The standard cover image is contained within the page margins, has rounded corners, and a box shadow effect.</p>
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Full-Width Hero Banner (Enhanced)</h2>
+      <div class="hero-banner-container">
+        <div class="comparison-label">Enhanced</div>
+        <div class="hero-banner-wrapper">
+          <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Hero banner" class="hero-banner-image">
+          <div class="hero-banner-gradient hero-banner-gradient-light"></div>
+          <div class="hero-banner-content">
+            <h1 class="hero-banner-title">Building with React and GraphQL</h1>
+            <p class="hero-banner-subtitle">May 26, 2025 • 8 min read</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="demo-content">
+        <p>The enhanced hero banner stretches across the full width of the screen, has no borders or shadows, and includes support for both title and subtitle text. It also adjusts to the current theme (dark/light mode).</p>
+        <p>Key improvements:</p>
+        <ul>
+          <li>Full-width display (no container constraints)</li>
+          <li>No rounded corners for a true edge-to-edge experience</li>
+          <li>Enhanced gradient overlay for better text readability</li>
+          <li>Support for both title and subtitle</li>
+          <li>Automatic adaptation to light/dark themes</li>
+          <li>Improved accessibility with better text shadows</li>
+          <li>Smooth transitions between theme changes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleButton = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const heroBannerGradient = document.querySelector('.hero-banner-gradient');
+      
+      // Check initial theme
+      const isDarkMode = localStorage.theme === 'dark' || 
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDarkMode) {
+        document.body.classList.add('dark');
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />';
+        heroBannerGradient.classList.remove('hero-banner-gradient-light');
+        heroBannerGradient.classList.add('hero-banner-gradient-dark');
+      }
+      
+      // Toggle theme
+      toggleButton.addEventListener('click', function() {
+        if (document.body.classList.contains('dark')) {
+          document.body.classList.remove('dark');
+          localStorage.theme = 'light';
+          themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />';
+          heroBannerGradient.classList.remove('hero-banner-gradient-dark');
+          heroBannerGradient.classList.add('hero-banner-gradient-light');
+        } else {
+          document.body.classList.add('dark');
+          localStorage.theme = 'dark';
+          themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />';
+          heroBannerGradient.classList.remove('hero-banner-gradient-light');
+          heroBannerGradient.classList.add('hero-banner-gradient-dark');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
